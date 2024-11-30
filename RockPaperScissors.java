@@ -5,19 +5,16 @@ import java.util.Scanner;
 import java.time.LocalDateTime;
 
 public class RockPaperScissors {
-    // Configuration constants
     private static final int MIN_ROUNDS = 1;
     private static final int MAX_ROUNDS = 21;
     private static final Random RANDOM = new Random();
     private static final Scanner SCANNER = new Scanner(System.in);
 
-    // Game state
     private final List<GameResult> gameHistory = new ArrayList<>();
     private String playerName;
     private int playerTotalScore = 0;
     private int computerTotalScore = 0;
 
-    // Enum for game moves with enhanced functionality
     private enum Move {
         ROCK("✊", "A solid rock-solid choice!"), 
         PAPER("✋", "Smooth as a sheet of paper."), 
@@ -52,7 +49,6 @@ public class RockPaperScissors {
         }
     }
 
-    // Detailed game result tracking
     private static class GameResult {
         final LocalDateTime timestamp;
         final String playerMove;
@@ -83,7 +79,6 @@ public class RockPaperScissors {
         }
     }
 
-    // Main game loop
     public void start() {
         displayWelcomeScreen();
         getPlayerName();
@@ -234,8 +229,7 @@ public class RockPaperScissors {
                 playerName + " wins this round! " + outcome.getMessage() : 
                 "Computer wins this round! " + outcome.getMessage());
         }
-        
-        // Record game result
+
         gameHistory.add(new GameResult(
             playerMove.toString(), 
             computerMove.toString(), 
@@ -257,7 +251,7 @@ public class RockPaperScissors {
                     return selectedMove;
                 }
             } catch (NumberFormatException e) {
-                // Silently catch and continue loop
+
             }
             System.out.println("Invalid move! Please enter 1, 2, or 3.");
         }
@@ -328,7 +322,6 @@ public class RockPaperScissors {
         System.out.println("=".repeat(40));
     }
 
-    // Main method to start the game
     public static void main(String[] args) {
         new RockPaperScissors().start();
     }
